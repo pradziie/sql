@@ -14,10 +14,10 @@
     * Open a private window in your browser. Copy and paste the link to your pull request into the address bar. Make sure you can see your pull request properly. This helps the technical facilitator and learning support staff review your submission easily.
 
 Checklist:
-- [ ] Create a branch called `assignment-two`.
-- [ ] Ensure that the repository is public.
-- [ ] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
-- [ ] Verify that the link is accessible in a private browser window.
+- [*] Create a branch called `assignment-two`.
+- [*] Ensure that the repository is public.
+- [*] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
+- [*] Verify that the link is accessible in a private browser window.
 
 If you encounter any difficulties or have questions, please don't hesitate to reach out to our team via our Slack at `#cohort-6-help`. Our Technical Facilitators and Learning Support staff are here to help you navigate any challenges.
 
@@ -54,7 +54,45 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+## Answer:
+
+#### Prompt 1
+Designed the model. Please note that sales table in my model is called transaction_info.
+
+Tried to not overcomplicate things but added some elements just in case (like teams_list and a junction table, as well as retaining both types of SCD).
+
+link to [ERD Type 1] SCD below:
+https://lucid.app/lucidchart/33619289-ee22-4d25-b4c0-7baf56a8f3cd/view
+
+link to [ERD Type 2] SCD below:
+https://lucid.app/lucidchart/d4895177-ab47-4588-b2d9-e39b7fa8e52d/view
+
+The PDF files are also under 02_activities/assignments folder, and will be committed. PDFs also available via the links (type 1 and type 2). Images can also be generated if needed.
+https://lucid.app/publicSegments/view/c5aa7778-4366-47d6-8134-e9d3f515aa1f
+https://lucid.app/publicSegments/view/f5d989c6-bf6a-41c5-a52a-0ffabffbcf0a
+
+#### Prompt 2
+added "shifts" table to the bottom right of the diagram. Morning/evening are under shift type. PK is shift ID as there will be many types of potential shifts start-time-wise.
+
+** had to research and think about a junction table to combine product_id's per order to retain all items per order info.**
+
+#### Prompt 3
+This refers to SCD: Slowly Changing Dimensions
+
+Type 1: addresses are overwritten with the most recent ones for customers.
+Type 2: addresses are stored and effective dates and active_y_n columns are added.
+
+There are more types. I will be researching them more a bit later.
+
+By default I'm going with type 1: overwriting changes and only keeping the current address, and not adding a customer_address table. While it's great to store historical addresses (e.g. order revenue by region), this would add too much complexity for a local book store. 
+
+Instead, I've added order address details to order_info table which should be populated with customer address at the time of order, instead of adding the address_info table. It's a compromise to make it easier to visualize data per region in BI tools without complicating queries/formulas/code.
+
+However, I've also added Type 2 table for learning purposes under the other version of the file. Type 1 has t1 in the file name and Type 2 has t2 in the file name.
+
+**Additional notes**
+- called the branch assignment-two this time to make LS job easier, instead of using snake case.
+- I called sales table [transaction_info] to reflect transaction data. It can be renamed if needed but the model is designed to connect order info to sales teams, not transaction info. I thought calling it [sales_table] could confuse someone in our imaginary sales team.
 ```
 
 ***
